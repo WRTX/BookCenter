@@ -18,7 +18,9 @@
   <% if @showqrc %>
   <%= link_to "Home Page", root_path%>
   <% else %>
+  <% if current_user %>
   <%= link_to "Show QRCode", root_path+"?codes=true"%>
+  <% end %>
   <% end %>
 </footer>
 </body>
