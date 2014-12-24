@@ -6,6 +6,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px 15px;
+    margin-bottom: 30px;
 
     min-height: 120px;
 
@@ -19,7 +20,7 @@
             min-height: 80px;
 
             &.short{
-                height: 100px;
+                height: 80px;
                 overflow: hidden;
             }
         }
