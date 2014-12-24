@@ -1,0 +1,92 @@
+// Place all the styles related to the books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.book{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 15px;
+
+    min-height: 120px;
+
+    .info{
+        color: #777;
+
+        &.suggestion{
+            color: #999;
+            font-size: 13px;
+            padding: 5px;
+            min-height: 80px;
+
+            &.short{
+                height: 100px;
+                overflow: hidden;
+            }
+        }
+    }
+    .name{
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 3px;
+        margin-bottom: 5px;
+        color: #333;
+    }
+    .status{
+        height: 25px;
+    }
+    .available{
+        font-size: 14px;
+        /*color: #609732;*/
+    }
+    .borrow{
+        text-align: center;
+        margin-top: 8px;
+
+    }
+    .borrower{
+        font-size: 18px;
+        color: #a7383d;
+    }
+    .borrow-form{
+        margin: 10px 0px;
+
+        #name{
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin: 0px 10px;
+            padding: 0px 5px;
+        }
+
+        .btn{
+            margin-top: 10px;
+        }
+    }
+
+    .btn{
+        width: 100%;
+    }
+
+    .history{
+        margin-top: 10px;
+        border-top: 1px solid #ccc;
+        padding-top: 5px;
+
+        .title{
+            font-size: 14px;
+            text-transform: uppercase;
+            color: #555;
+        }
+        .borrower{
+            display: inline-block;
+            width: 60px;
+            font-size: 14px;
+        }
+    }
+
+    .qrcode{
+        text-align: center;
+        img{
+            max-width: 100%;
+        }
+    }
+}

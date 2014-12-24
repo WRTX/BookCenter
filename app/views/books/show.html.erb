@@ -1,0 +1,72 @@
+<h1><%= link_to "Books >> ", root_path %>Borrow Book</h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="book">
+      <div class="line">
+        <div class="info name"><%= @book.name %></div>
+      </div>
+      <div class="line">
+        <div class="info">Rates:
+          <% if @book.stars and @book.stars > 1 %>
+          <% (0...@book.stars).each do |i| %>
+          ★
+          <% end %>
+          <% end %>
+        </div>
+        <div class="info">Suggested_by: <%= @book.suggested_by%></div>
+        <div class="info suggestion"><%= @book.suggestion%></div>
+      </div>
+
+      <div class="line">
+        <% if !@book.available %>
+        <div class="info not-available">
+          <% if @book.last_borrowship %>
+          Borrowed by
+          <span class="borrower"><%= @book.last_borrowship.borrower.name %></span>,
+          <%= @book.last_borrowship.created_at.strftime('%Y-%m-%d') %>
+          <% else %>
+          Not available
+          <% end %>
+        </div>
+        <% end %>
+
+
+        <div class="borrow-form">
+          <%= form_tag book_path, method: "patch" do %>
+          <% if @error %>
+          <div class="alert alert-danger">Your name cannot be blank</div>
+          <% end %>
+          <%= label_tag(:name, "Your name:") %>
+          <%= text_field_tag(:name) %>
+          <%= submit_tag "Borrow", class: "btn btn-success" %>
+          <% end %>
+        </div>
+        <% if current_user and @book.available == false %>
+        <div class="return-form">
+          <%= form_tag book_path, method: "patch" do %>
+          <input type="hidden" name="return" value="true">
+          <%= submit_tag "Return", class: "btn btn-info" %>
+          <% end %>
+        </div>
+        <% end %>
+
+        <div class="info history">
+          <div class="title">History</div>
+          <% @book.borrowships.each do |bs| %>
+          <div class="item">
+            <span class="borrower"><%= bs.borrower.name %></span>
+            <%= bs.created_at.strftime('%Y-%m-%d') %>
+            to
+            <% if bs.returned_at %>
+            <%= bs.returned_at.strftime('%Y-%m-%d') %>
+            <% else %>
+            now
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

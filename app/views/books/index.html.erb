@@ -1,0 +1,47 @@
+<h1>Book List</h1>
+
+<div class="row">
+  <% @books.each do |book| %>
+  <div class="col-md-4">
+    <div class="book">
+      <div class="line">
+        <div class="info name"><%= book.name %></div>
+      </div>
+      <div class="line">
+        <div class="info">Rates:
+          <% if book.stars and book.stars > 1 %>
+          <% (0...book.stars).each do |i| %>
+          ★
+          <% end %>
+          <% end %>
+        </div>
+        <div class="info">Suggested_by: <%= book.suggested_by%></div>
+        <div class="info suggestion"><%= book.suggestion%></div>
+      </div>
+      <% if @showqrc %>
+      <div class="line qrcode">
+        <%= image_tag book.qrcode(book_url(book.id)) %>
+      </div>
+      <% else %>
+      <div class="line">
+        <% if book.available %>
+        <div class="info status available"></div>
+        <div class="borrow"><%= link_to 'Borrow now!', book_path(book.id), :class=>"btn btn-success" %></div>
+        <% else %>
+        <div class="info status not-available">
+          <% if book.last_borrowship %>
+          Borrowed by:
+          <span class="borrower"><%= book.last_borrowship.borrower.name %></span>,
+          <%= book.last_borrowship.created_at.strftime('%Y-%m-%d') %>
+          <% else %>
+          Not available
+          <% end %>
+        </div>
+        <div class="borrow"><%= link_to 'Transfer to me!', book_path(book.id), :class=>"btn btn-default" %></div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>

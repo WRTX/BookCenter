@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BooksCenter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+<footer>Continuously improved by FLYINGBUG,
+  <% if not current_user %>
+  <%= link_to "Sign in", new_user_session_path %>,
+  <% end %>
+
+  <% if @showqrc %>
+  <%= link_to "Home Page", root_path%>
+  <% else %>
+  <%= link_to "Show QRCode", root_path+"?codes=true"%>
+  <% end %>
+</footer>
+</body>
+</html>
